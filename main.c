@@ -257,4 +257,7 @@ void exit(int arg) {
     while (arg == arg);
 }
 
+void _init(void) {
+}
+
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
