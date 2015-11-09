@@ -15,7 +15,7 @@ INCLUDES +=-I ./lib
 INCLUDES +=-I ./Include
 LDFLAGS = -T my_ldscrypt.ld
 
-BINNAME = target_bin_1
+BINNAME = out.bin
 HEXNAME = out.hex
 .PHONY: all clean # To declare all, clean are not files
 
