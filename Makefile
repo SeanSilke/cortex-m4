@@ -39,7 +39,6 @@ load: ${BINNAME}
 	@/home/sorlov/code/f1/stm32flash/stm32flash -b 115200 -w ${HEXNAME} -v /dev/ttyS0
 
 clean:
-	-rm -rf *.o
-	-rm ${BINNAME}
-	-rm ${HEXNAME}
-# @testComand
+	@-rm -rf *.o
+	@-rm ${BINNAME}
+	@-rm ${HEXNAME}
