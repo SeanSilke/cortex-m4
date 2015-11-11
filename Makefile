@@ -6,9 +6,12 @@ OPTIONS =-mcpu=cortex-m4 -mfloat-abi=hard -mthumb -mfpu=fpv4-sp-d16 -std=gnu99
 OPTIONS +=-DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx -DUSE_STM324xG_EVAL
 OPTIONS +=-nostartfiles
 INCLUDES = -I .
-INCLUDES +=-I ../STM32F4xx_DSP_StdPeriph_Lib_V1.6.0/Libraries/CMSIS/Include/
+# INCLUDES +=-I ../STM32F4xx_DSP_StdPeriph_Lib_V1.6.0/Libraries/CMSIS/Include/
 # INCLUDES +=-I ./lib
+
 INCLUDES +=-I ./Include
+INCLUDES +=-I ./CMSIS/Include/
+
 LDFLAGS = -T my_ldscrypt.ld
 
 BINNAME = out.bin
