@@ -1,7 +1,6 @@
 # export PATH=${PATH}:/home/sorlov/Tools/gcc-arm-none-eabi-4_9-2015q2/bin
 CC = arm-none-eabi-gcc
 OC = arm-none-eabi-objcopy
-AS = arm-none-eabi-as
 OPTIONS =-mcpu=cortex-m4 -mfloat-abi=hard -mthumb -mfpu=fpv4-sp-d16 -std=gnu99
 OPTIONS +=-DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx -DUSE_STM324xG_EVAL
 OPTIONS +=-nostartfiles
@@ -32,6 +31,9 @@ ${BINNAME}: ${OBJS}
 	${CC} ${OPTIONS} ${INCLUDES} ${OBJS} ${LDFLAGS} -o ${BINNAME}
 
 %.o: %.c
+	${CC} ${INCLUDES} -c ${OPTIONS} $<
+
+%.o: %.s
 	${CC} ${INCLUDES} -c ${OPTIONS} $<
 
 
