@@ -75,8 +75,19 @@ int main(void)
 
   /* Initialize Leds and Key Button mounted on EVAL board */
   // STM_EVAL_LEDInit(LED4);
-  STM_EVAL_LEDInit(3);
+	int a,b,c;
+
+
+first:
+	a = 2;
+	b = 3;
+	c = a+b;
+second:
+
+  STM_EVAL_LEDInit(LED1);
+  STM_EVAL_LEDOn(LED1);
   while (1) {
+
   }
 
 }

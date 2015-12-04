@@ -7,6 +7,7 @@ PROJECT_DIR=$(shell pwd)
 OPTIONS =-mcpu=cortex-m4 -mfloat-abi=hard -mthumb -mfpu=fpv4-sp-d16 -std=gnu99
 OPTIONS +=-DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx -DUSE_STM324xG_EVAL
 OPTIONS +=-nostartfiles
+OPTIONS +=-ggdb
 
 INCLUDES = -I .
 INCLUDES +=-I ./Libraries/CMSIS/Device/ST/STM32F4xx/Include
@@ -31,7 +32,7 @@ OBJS = main.o stm32f4xx_it.o system_stm32f4xx.o \
 			startup_stm32f40_41xxx.o
 
 all: ${BINNAME}
-	${OC} -O ihex  ${BINNAME} ${HEXNAME}
+	${OC} -O  ihex  ${BINNAME} ${HEXNAME}
 
 
 ${BINNAME}: libutil libperiph ${OBJS}

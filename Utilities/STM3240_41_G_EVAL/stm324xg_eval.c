@@ -6,12 +6,9 @@
 /** @defgroup STM324xG_EVAL_LOW_LEVEL_Private_Variables
   * @{
   */
-GPIO_TypeDef* GPIO_PORT[LEDn] = {LED1_GPIO_PORT, LED2_GPIO_PORT, LED3_GPIO_PORT,
-                                 LED4_GPIO_PORT};
-const uint16_t GPIO_PIN[LEDn] = {LED1_PIN, LED2_PIN, LED3_PIN,
-                                 LED4_PIN};
-const uint32_t GPIO_CLK[LEDn] = {LED1_GPIO_CLK, LED2_GPIO_CLK, LED3_GPIO_CLK,
-                                 LED4_GPIO_CLK};
+GPIO_TypeDef* GPIO_PORT[LEDn] = {LED1_GPIO_PORT, LED2_GPIO_PORT, LED3_GPIO_PORT};
+const uint16_t GPIO_PIN[LEDn] = {LED1_PIN, LED2_PIN, LED3_PIN};
+const uint32_t GPIO_CLK[LEDn] = {LED1_GPIO_CLK, LED2_GPIO_CLK, LED3_GPIO_CLK};
 
 GPIO_TypeDef* BUTTON_PORT[BUTTONn] = {WAKEUP_BUTTON_GPIO_PORT, TAMPER_BUTTON_GPIO_PORT,
                                       KEY_BUTTON_GPIO_PORT};
@@ -57,7 +54,7 @@ const uint16_t COM_TX_PIN_SOURCE[COMn] = {EVAL_COM1_TX_SOURCE};
 
 const uint16_t COM_RX_PIN_SOURCE[COMn] = {EVAL_COM1_RX_SOURCE};
 
-const uint16_t COM_TX_AFCOMn] = {EVAL_COM1_TX_AF};
+const uint16_t COM_TX_AF[COMn] = {EVAL_COM1_TX_AF};
 
 const uint16_t COM_RX_AF[COMn] = {EVAL_COM1_RX_AF};
 
@@ -73,14 +70,14 @@ void STM_EVAL_LEDInit(Led_TypeDef Led)
 
 
   /* Configure the GPIO_LED pin */
-  // GPIO_InitStructure.FGPIO_Pin = GPIO_PIN[Led];
-  GPIO_InitStructure.GPIO_Pin = 6;
+  GPIO_InitStructure.GPIO_Pin = GPIO_PIN[Led];
+//  GPIO_InitStructure.GPIO_Pin = 6;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  // GPIO_Init(GPIO_PORT[Led], &GPIO_InitStructure);
-  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  GPIO_Init(GPIO_PORT[Led], &GPIO_InitStructure);
+//  GPIO_Init(GPIOC, &GPIO_InitStructure);
 }
 
 void STM_EVAL_LEDOn(Led_TypeDef Led)
