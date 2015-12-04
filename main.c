@@ -74,51 +74,9 @@ int main(void)
      */
 
   /* Initialize Leds and Key Button mounted on EVAL board */
-  STM_EVAL_LEDInit(LED1);
-  STM_EVAL_LEDInit(LED2);
-  STM_EVAL_LEDInit(LED3);
-  STM_EVAL_LEDInit(LED4);
-
-  //STM_EVAL_PBInit(BUTTON, BUTTON_MODE_EXTI);
-
-  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-#if RTS_CTS
-  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-#endif
-
-  /* Enable USART clock */
-  USARTx_CLK_INIT(USARTx_CLK, ENABLE);
-
-  /* Enable the DMA clock */
-  RCC_AHB1PeriphClockCmd(USARTx_DMAx_CLK, ENABLE);
-
-  /* Enable DMA1 clock ********************************************************/
-  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA, ENABLE);
-
-  /* EVAL_COM1 (USART3) configuration --------------------------------------*/
-  USART_Config();
-  /* DMA1/2 Stream1/5 channel4 (connected to USART3_RX/USART1_RX) configuration */
-  DMA_Config();
-
-
-  //USART3->CR1 |= (u16)USART_CR1_RE;       // USART3 receiver is enabled RX ON
-
-  NVIC_InitTypeDef NVIC_InitStructure;
-  /* Enable Idle line detected USART */
-
-  /* Enable the USARTx Interrupt */
-  NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-  NVIC_Init(&NVIC_InitStructure);
-
-  while (1)
-  {
-    if(BytesReceived>0) 	UART_CMD_HANDLER();
-    Delay(0xFFFFF);
-    STM_EVAL_LEDToggle(LED1);
-
+  // STM_EVAL_LEDInit(LED4);
+  STM_EVAL_LEDInit(3);
+  while (1) {
   }
 
 }
