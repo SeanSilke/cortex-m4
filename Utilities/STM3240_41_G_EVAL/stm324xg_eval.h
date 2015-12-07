@@ -1,32 +1,3 @@
-/**
-  ******************************************************************************
-  * @file    stm324xg_eval.h
-  * @author  MCD Application Team
-  * @version V1.1.2
-  * @date    19-September-2013
-  * @brief   This file contains definitions for STM324xG_EVAL's Leds, push-buttons
-  *          and COM ports hardware resources.
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
-  *
-  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  * You may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at:
-  *
-  *        http://www.st.com/software_license_agreement_liberty_v2
-  *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  *
-  ******************************************************************************
-  */ 
-  
-/* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM324xG_EVAL_H
 #define __STM324xG_EVAL_H
 
@@ -36,14 +7,16 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
-//#include "stm32_eval_legacy.h"
    
 typedef enum 
 {
   LED1 = 0,
   LED2 = 1,
   LED3 = 2,
-  LED4 = 3
+#ifdef USE_STM324xG_EVAL
+  LED4 = 3,
+#endif//USE_STM324xG_EVAL
+  LEDn //3 or 4
 } Led_TypeDef;
 
 typedef enum 
@@ -81,28 +54,28 @@ typedef enum
   COM2 = 1
 } COM_TypeDef;
 
-#define LEDn                             4
+//#define LEDn                             4
 
+#ifdef USE_STM324xG_EVAL
 #define LED1_PIN                         GPIO_Pin_6
-#define LED1_GPIO_PORT                   GPIOC
-#define LED1_GPIO_CLK                    RCC_AHB1Periph_GPIOC
+#define LED1_GPIO_PORT                   GPIOG
+#define LED1_GPIO_CLK                    RCC_AHB1Periph_GPIOG  
   
-#define LED2_PIN                         GPIO_Pin_7
-#define LED2_GPIO_PORT                   GPIOC
-#define LED2_GPIO_CLK                    RCC_AHB1Periph_GPIOC
+#define LED2_PIN                         GPIO_Pin_8
+#define LED2_GPIO_PORT                   GPIOG
+#define LED2_GPIO_CLK                    RCC_AHB1Periph_GPIOG  
   
-#define LED3_PIN                         GPIO_Pin_8
-#define LED3_GPIO_PORT                   GPIOC
-#define LED3_GPIO_CLK                    RCC_AHB1Periph_GPIOC
+#define LED3_PIN                         GPIO_Pin_9
+#define LED3_GPIO_PORT                   GPIOI
+#define LED3_GPIO_CLK                    RCC_AHB1Periph_GPIOI  
   
-//#define LED4_PIN                         GPIO_Pin_7
-//#define LED4_GPIO_PORT                   GPIOC
-//#define LED4_GPIO_CLK                    RCC_AHB1Periph_GPIOC
+#define LED4_PIN                         GPIO_Pin_7
+#define LED4_GPIO_PORT                   GPIOC
+#define LED4_GPIO_CLK                    RCC_AHB1Periph_GPIOC
 
 #define BUTTONn                          3 /*!< Joystick pins are connected to 
                                                 an IO Expander (accessible through 
                                                 I2C1 interface) */
-
 /**
  * @brief Wakeup push-button
  */
@@ -139,6 +112,22 @@ typedef enum
   * @}
   */ 
 
+#else //USE_STM324xG_EVAL
+#define LED1_PIN                         GPIO_Pin_6
+#define LED1_GPIO_PORT                   GPIOC
+#define LED1_GPIO_CLK                    RCC_AHB1Periph_GPIOC
+
+#define LED2_PIN                         GPIO_Pin_7
+#define LED2_GPIO_PORT                   GPIOC
+#define LED2_GPIO_CLK                    RCC_AHB1Periph_GPIOC
+
+#define LED3_PIN                         GPIO_Pin_8
+#define LED3_GPIO_PORT                   GPIOC
+#define LED3_GPIO_CLK                    RCC_AHB1Periph_GPIOC
+#endif //USE_STM324xG_EVAL
+
+
+#ifdef USE_STM324xG_EVAL
 #define COMn                             1
 
 /**
@@ -157,7 +146,10 @@ typedef enum
 #define EVAL_COM1_RX_SOURCE              GPIO_PinSource11
 #define EVAL_COM1_RX_AF                  GPIO_AF_USART3
 #define EVAL_COM1_IRQn                   USART3_IRQn
+#endif //USE_STM324xG_EVAL
 
+
+#ifdef ADD_USE_STM324xG_EVAL
 /**
   * @brief  SD FLASH SDIO Interface
   */
@@ -249,6 +241,9 @@ typedef enum
 /** @defgroup STM324xG_EVAL_LOW_LEVEL_Exported_Functions
   * @{
   */
+
+#endif
+
 void STM_EVAL_LEDInit(Led_TypeDef Led);
 void STM_EVAL_LEDOn(Led_TypeDef Led);
 void STM_EVAL_LEDOff(Led_TypeDef Led);

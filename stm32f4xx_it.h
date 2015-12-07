@@ -18,11 +18,16 @@
 #include "stm32f4xx.h"
 #include "stm324xg_eval.h"
 
+void InitClock();
+void DMA_Config(void);
+void USART_Config(void);
+
+
 void USART3_IRQHandler(void);
 void UART_CMD_HANDLER(void);
 #define SIZE_BUF 255
 uint8_t Buffercmp8(uint8_t *pBuffer1, uint8_t *pBuffer2, uint8_t BufferLength);
-
+void Send_nbyte(uint8_t* v,uint8_t n);
 #ifdef __cplusplus
 }
 #endif

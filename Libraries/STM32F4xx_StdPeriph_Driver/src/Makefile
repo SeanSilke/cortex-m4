@@ -7,7 +7,8 @@ INCLUDES +=-I ${PROJECT_DIR}/Libraries/CMSIS/Include
 INCLUDES +=-I ${PROJECT_DIR}
 
 OPTIONS =-mcpu=cortex-m4 -mfloat-abi=hard -mthumb -mfpu=fpv4-sp-d16 -std=gnu99
-OPTIONS +=-DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx -DUSE_STM324xG_EVAL
+OPTIONS +=-DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx 
+#OPTIONS +=-DUSE_STM324xG_EVAL
 OPTIONS +=-ggdb
 
 OBJS =  misc.o stm32f4xx_dma.o stm32f4xx_gpio.o stm32f4xx_rcc.o \
