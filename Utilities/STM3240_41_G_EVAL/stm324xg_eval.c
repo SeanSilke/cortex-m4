@@ -57,7 +57,7 @@ const uint16_t COM_TX_PIN_SOURCE[COMn] = {EVAL_COM1_TX_SOURCE};
 
 const uint16_t COM_RX_PIN_SOURCE[COMn] = {EVAL_COM1_RX_SOURCE};
 
-const uint16_t COM_TX_AFCOMn] = {EVAL_COM1_TX_AF};
+const uint16_t COM_TX_AF[COMn] = {EVAL_COM1_TX_AF};
 
 const uint16_t COM_RX_AF[COMn] = {EVAL_COM1_RX_AF};
 
